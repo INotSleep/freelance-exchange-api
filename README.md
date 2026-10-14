@@ -76,6 +76,10 @@ erDiagram
 
 Перевірив `down()` через `npm run migration:revert`: база повернулася до трьох таблиць з лабораторної 4 без жодного ENUM-типу. Після повторного запуску в базі 18 нових таблиць і 9 ENUM-типів, а `migration:generate` відповідає `No changes in database schema were found`, тобто сутності і база збігаються.
 
+У pgAdmin таблиця `migrations` показує обидві нові міграції поруч з міграціями бойлерплейта: `CreateFreelanceSchema` і сід `SeedFreelanceData`.
+
+![Таблиця migrations у pgAdmin](docs/report/10-pgadmin-migrations.jpg)
+
 Сіди
 
 Дані взяв з курсової (`000002_initial_data.sql`, `000003_task_skills.sql`, `000004_lab3_demo_data.sql`) і поклав у `src/orm/seeds/sql`. Прибрав `BEGIN` / `COMMIT`, бо TypeORM сам виконує міграцію в транзакції, і замінив `users` на `accounts`. Сід-міграція `SeedFreelanceData` виконує ці файли по черзі. Виходить 14 акаунтів і профілів, 14 навичок, 14 завдань, 21 заявка, 6 чатів, 13 повідомлень, 14 відгуків і записи в усіх інших таблицях.
